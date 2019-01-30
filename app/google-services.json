@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "717835780743",
+    "firebase_url": "https://smartsecuritycamera-29daa.firebaseio.com",
+    "project_id": "smartsecuritycamera-29daa",
+    "storage_bucket": "smartsecuritycamera-29daa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:717835780743:android:b1de9e08a20e6c67",
+        "android_client_info": {
+          "package_name": "com.hqcd.smartsecuritycamera"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "717835780743-ahu0l7qp0gv8uuuvamdshbltqad2s99m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hqcd.smartsecuritycamera",
+            "certificate_hash": "44c1b54a9193a36a21e5f81e4db928f69b5587e5"
+          }
+        },
+        {
+          "client_id": "717835780743-rf7kr1bimt02si59td13l98buelj4r2u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKxdsZhykL0FDarzLiVnUsd3SXx5DpmOc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "717835780743-rf7kr1bimt02si59td13l98buelj4r2u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
