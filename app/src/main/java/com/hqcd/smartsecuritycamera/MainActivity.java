@@ -1,7 +1,10 @@
 package com.hqcd.smartsecuritycamera;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -9,6 +12,8 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private Button loginBtn, settingsBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +21,21 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        loginBtn = (Button)findViewById(R.id.login_button);
+        settingsBtn = (Button)findViewById(R.id.settings_button);
+    }
 
+    public void onClick(View view)
+    {
+        Intent intent;
+        switch (view.getId())
+        {
+            case R.id.login_button:
+                intent = new Intent(this, LogInActivity.class);
+                startActivity(intent); break;
+            case R.id.settings_button:
+                intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent); break;
+        }
     }
 }
