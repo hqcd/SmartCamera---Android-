@@ -48,7 +48,8 @@
             android:layout_weight="0"
             android:background="@drawable/rounded_button"
             android:text="Log In"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:onClick="onClick"/>
 
         <Button
             android:id="@+id/registerButton"
@@ -58,6 +59,7 @@
             android:layout_weight="0"
             android:background="@drawable/rounded_button"
             android:text="Register"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:onClick="onClick"/>
     </LinearLayout>
 </LinearLayout>

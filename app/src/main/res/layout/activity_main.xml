@@ -8,14 +8,29 @@
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/welcomeText"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Settings"
-        android:id="@+id/settings_button"/>
+        android:id="@+id/settings_button"
+        android:onClick="onClick"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/login_button"/>
+        android:id="@+id/toLoginScreen"
+        android:text="Log In"
+        android:onClick="onClick"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/logOutButton"
+        android:text="Log Out"
+        android:onClick="onClick"/>
+
 </LinearLayout>
