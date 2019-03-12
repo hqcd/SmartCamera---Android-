@@ -1,5 +1,6 @@
 package com.hqcd.smartsecuritycamera;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,9 +33,14 @@ public class LogInActivity extends AppCompatActivity {
         passwordField = (EditText)findViewById(R.id.pwET);
         registerButton = (Button)findViewById(R.id.registerButton);
         loginButton = (Button)findViewById(R.id.loginButton);
-
         mAuth = FirebaseAuth.getInstance();
 
+
+
+    }
+
+    public void goToPicturesMain(View v){
+        startActivity(new Intent(LogInActivity.this, PicturesMain.class));
     }
 
     public void createAccount(String email, String password){
@@ -97,6 +103,8 @@ public class LogInActivity extends AppCompatActivity {
             case R.id.loginButton:
                 signIn(email, password);
                 break;
+            case R.id.picturesButton:
+                startActivity(new Intent(LogInActivity.this, PicturesMain.class));
         }
     }
 }

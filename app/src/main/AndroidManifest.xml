@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".CameraActivity"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
@@ -28,7 +28,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".Main2Activity" />
+        <activity
+            android:name=".PicturesMain"
+            android:label="@string/title_activity_pictures_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PictureListActivity"
+            android:label="@string/title_activity_picture_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".IndividualPicturesActivity"
+            android:label="@string/title_activity_individual_pictures"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

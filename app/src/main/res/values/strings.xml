@@ -76,4 +76,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_pictures_main">PicturesMain</string>
+    <string name="title_activity_picture_list">PictureListActivity</string>
+    <string name="title_activity_individual_pictures">IndividualPicturesActivity</string>
+
 </resources>

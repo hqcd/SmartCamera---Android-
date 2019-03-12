@@ -32,5 +32,16 @@
         android:id="@+id/logOutButton"
         android:text="Log Out"
         android:onClick="onClick"/>
+    <Button
+        android:id="@+id/picturesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@drawable/rounded_button"
+        android:text="CheckPictures"
+        android:textColor="@android:color/white"
+        android:layout_gravity="bottom|end"
+        android:onClick="onClick"/>
+
 
 </LinearLayout>

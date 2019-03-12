@@ -28,7 +28,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private Button settingsBtn, logInBtn, logOutButton;
+    private Button settingsBtn, logInBtn, logOutButton, picturesMainButton;
     private TextView welcomeText;
 
     @Override
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         logOutButton = (Button)findViewById(R.id.logOutButton);
         settingsBtn = (Button) findViewById(R.id.settings_button);
         welcomeText = (TextView)findViewById(R.id.welcomeText);
+        picturesMainButton = (Button)findViewById(R.id.picturesButton);
 
         settingsBtn.setEnabled(false);
     }
@@ -84,6 +85,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.logOutButton:
                 logOut();
+                break;
+            case R.id.picturesButton:
+                intent = new Intent(this,PicturesMain.class);
+                startActivity(intent);
                 break;
         }
     }
