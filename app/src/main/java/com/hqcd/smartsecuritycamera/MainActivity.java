@@ -4,8 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser user;
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mImageUrls = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private FloatingActionButton fab;
 
 
 
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         logOutButton = (Button)findViewById(R.id.logOutButton);
         settingsBtn = (Button) findViewById(R.id.settings_button);
         welcomeText = (TextView)findViewById(R.id.welcomeText);
+        recyclerView = (RecyclerView)findViewById(R.id.recentActivityRecyclerView);
+        fab = (FloatingActionButton)findViewById(R.id.floatingActionButton);
 
         settingsBtn.setEnabled(false);
 
@@ -108,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.logOutButton:
                 logOut();
                 break;
+            case R.id.floatingActionButton:
+                intent = new Intent(this, CameraRecorder.class);
+                startActivity(intent);
+                break;
         }
     }
 
@@ -121,6 +128,8 @@ public class MainActivity extends AppCompatActivity {
             logInBtn.setVisibility(View.VISIBLE);
             logOutButton.setEnabled(false);
             logOutButton.setVisibility(View.INVISIBLE);
+            recyclerView.setVisibility(View.INVISIBLE);
+
         }
         else
         {
@@ -129,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
             logInBtn.setVisibility(View.INVISIBLE);
             logOutButton.setEnabled(true);
             logOutButton.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
         }
     }
 
