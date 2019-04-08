@@ -58,7 +58,7 @@ public class RecorderService extends Service {
             p.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
             p.setPreviewFormat(ImageFormat.NV21);
             mServiceCamera.setParameters(p);
-            mServiceCamera.setDisplayOrientation(90);
+            mServiceCamera.setDisplayOrientation(0);
 
             try {
 
@@ -82,7 +82,7 @@ public class RecorderService extends Service {
             mMediaRecorder.setVideoEncodingBitRate(3000000);
             mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
             mMediaRecorder.setPreviewDisplay(mSurfaceHolder.getSurface());
-            mMediaRecorder.setOrientationHint(90);
+            mMediaRecorder.setOrientationHint(0);
             mMediaRecorder.prepare();
             mMediaRecorder.start();
 

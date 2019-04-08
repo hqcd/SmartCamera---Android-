@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         settingsBtn.setEnabled(false);
 
-        ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.INTERNET}, 1);
+        ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.INTERNET, Manifest.permission.RECORD_AUDIO}, 1);
 
         File thumbnailDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Thumbnails");
         if(!thumbnailDir.exists())
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 logOut();
                 break;
             case R.id.floatingActionButton:
-                intent = new Intent(this, CameraRecorder.class);
+                intent = new Intent(this, StreamingActivity.class);
                 startActivity(intent);
                 break;
         }
