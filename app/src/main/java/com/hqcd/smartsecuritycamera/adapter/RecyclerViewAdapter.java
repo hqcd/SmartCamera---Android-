@@ -1,4 +1,4 @@
-package com.hqcd.smartsecuritycamera;
+package com.hqcd.smartsecuritycamera.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,11 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.hqcd.smartsecuritycamera.R;
 
 import java.util.ArrayList;
 

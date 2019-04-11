@@ -62,6 +62,15 @@
         android:layout_below="@+id/recentActivityText">
     </view>
 
+    <Button
+        android:id="@+id/button_images"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Images"
+        android:layout_below="@+id/recentActivityRecyclerView"
+        android:layout_marginTop="15dp"
+        android:onClick="onClick"/>
+
     <android.support.design.widget.FloatingActionButton
     android:id="@+id/floatingActionButton"
     android:layout_width="wrap_content"

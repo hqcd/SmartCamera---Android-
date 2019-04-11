@@ -1,7 +1,6 @@
 package com.hqcd.smartsecuritycamera;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
@@ -11,26 +10,14 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
+import com.hqcd.smartsecuritycamera.adapter.RecyclerViewAdapter;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -40,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private FirebaseAuth mAuth;
-    private Button settingsBtn, logInBtn, logOutButton;
+    private Button settingsBtn, logInBtn, logOutButton, imageButton;
     private TextView welcomeText;
     private FirebaseUser user;
     private ArrayList<String> mNames = new ArrayList<>();
@@ -64,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         welcomeText = (TextView)findViewById(R.id.welcomeText);
         recyclerView = (RecyclerView)findViewById(R.id.recentActivityRecyclerView);
         fab = (FloatingActionButton)findViewById(R.id.floatingActionButton);
+        imageButton = (Button)findViewById(R.id.button_images);
 
         settingsBtn.setEnabled(false);
 
@@ -115,6 +103,9 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, StreamingActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.button_images:
+                intent = new Intent(this, ImageListActivity.class);
+                startActivity(intent);
         }
     }
 
