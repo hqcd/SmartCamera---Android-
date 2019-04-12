@@ -9,14 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hqcd.smartsecuritycamera.R;
+import com.koushikdutta.ion.Ion;
 
 import java.util.ArrayList;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
@@ -45,9 +45,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Log.d(TAG, "onBindViewHolder: called.");
 
         Bitmap bitmap = BitmapFactory.decodeFile(mImages.get(i));
-        viewHolder.image.setImageBitmap(bitmap);
+        Ion.with(viewHolder.image).load(mImages.get(i));
         viewHolder.name.setText(mImageNames.get(i));
-
     }
 
     @Override
@@ -58,7 +57,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public class ViewHolder extends RecyclerView.ViewHolder{
 
 
-        CircleImageView image;
+        ImageView image;
         TextView name;
         RelativeLayout parentLayout;
         public ViewHolder(View itemView){

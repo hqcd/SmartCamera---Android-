@@ -22,32 +22,29 @@
             android:layout_alignParentTop="true"
             android:textSize="24sp"/>
 
-        <Button
-            android:id="@+id/toLoginScreen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="Log In" />
-
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/settings_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:text="Settings"
-        android:layout_below="@+id/linearLayoutTop"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Recent Activity"
+        android:text="Recent Visitors"
         android:id="@+id/recentActivityText"
         android:layout_marginTop="20dp"
         android:textSize="24sp"
-        android:layout_below="@id/settings_button"/>
+        android:layout_below="@id/linearLayoutTop"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/all_images"
+        android:onClick="onClick"
+        android:text="All Images"
+        android:textColor="@color/colorPrimary"
+        android:layout_toRightOf="@+id/recentActivityText"
+        android:layout_alignBottom="@+id/recentActivityText"
+        android:layout_marginLeft="20dp"
+        android:textSize="24sp"
+        />
 
     <view class="android.support.v7.widget.RecyclerView"
         android:layout_width="match_parent"
@@ -55,15 +52,6 @@
         android:id="@+id/recentActivityRecyclerView"
         android:layout_below="@+id/recentActivityText">
     </view>
-
-    <Button
-        android:id="@+id/button_images"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Images"
-        android:layout_below="@+id/recentActivityRecyclerView"
-        android:layout_marginTop="15dp"
-        android:onClick="onClick"/>
 
     <android.support.design.widget.FloatingActionButton
     android:id="@+id/floatingActionButton"
