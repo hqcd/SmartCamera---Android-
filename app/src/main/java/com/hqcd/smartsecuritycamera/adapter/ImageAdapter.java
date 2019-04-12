@@ -1,6 +1,8 @@
 package com.hqcd.smartsecuritycamera.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,13 +20,17 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     private ArrayList<String> imagePaths = new ArrayList<>();
     private Context context;
-    private String user = "hqcd";
-    private String device = "pixel";
+    private String ip;
+    private String user;
+    private String device;
     private String folder = "images";
 
-    public ImageAdapter(ArrayList<String> imagePaths, Context context) {
+    public ImageAdapter(ArrayList<String> imagePaths, Context context, String ip, String user, String device) {
         this.imagePaths = imagePaths;
         this.context = context;
+        this.ip = ip;
+        this.user = user;
+        this.device = device;
     }
 
     @NonNull
@@ -37,7 +43,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
 
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        String url = "http://192.168.1.72/" + user + "/" + device + "/" + folder + "/" + imagePaths.get(i);
+        String url = "http://" + ip + "/" + user + "/" + device + "/" + folder + "/" + imagePaths.get(i);
         Ion.with(viewHolder.imageView).load(url);
         System.out.println("Url loaded: " + url);
     }
