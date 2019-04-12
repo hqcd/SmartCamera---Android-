@@ -1,6 +1,9 @@
 package com.hqcd.smartsecuritycamera;
 
+import android.content.ComponentName;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +33,7 @@ public class RecordingListActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private TextView load;
     private RecyclerView recyclerView;
+    private String ip, user, device;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +48,19 @@ public class RecordingListActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.recording_list_recycler_view);
         list = new ArrayList<>();
 
+        //Obtain Strings for prefs
+        ip = sharedPreferences.getString("pref_ip_address","" );
+        user = firebaseUser.getUid();
+        device = sharedPreferences.getString("pref_device_name", "");
 
+        //Obtain recordings list from json
         fetchRecordings();
-
-
     }
 
     public void fetchRecordings()
     {
-        Ion.with(this).load("https://api.myjson.com/bins/lgon8")
+        list.clear();
+        Ion.with(this).load("https://api.myjson.com/bins/9dl2c")
                 .asJsonObject()
                 .setCallback(new FutureCallback<JsonObject>() {
                     @Override
@@ -84,13 +92,23 @@ public class RecordingListActivity extends AppCompatActivity {
         switch (view.getId())
         {
             case R.id.recording_name:
+                TextView tv = (TextView)view;
+                String rec = tv.getText().toString();
+                Toast.makeText(this, rec, Toast.LENGTH_SHORT).show();
+                launchVideo(rec);
                 break;
         }
     }
 
     public void launchVideo(String name)
     {
-
+        int vlcRequestCode = 42;
+        Uri uri = Uri.parse("http://" + ip + "/" + user + "/" + device + "/videos/" + name);
+        Intent vlcIntent = new Intent(Intent.ACTION_VIEW);
+        vlcIntent.setPackage("org.videolan.vlc");
+        vlcIntent.setDataAndTypeAndNormalize(uri, "video/*");
+        vlcIntent.setComponent(new ComponentName("org.videolan.vlc", "org.videolan.vlc.gui.video.VideoPlayerActivity"));
+        startActivityForResult(vlcIntent, vlcRequestCode);
     }
 
 

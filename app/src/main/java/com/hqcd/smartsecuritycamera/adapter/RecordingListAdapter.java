@@ -31,6 +31,7 @@ public class RecordingListAdapter extends RecyclerView.Adapter<RecordingListAdap
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.recording.setText(recordings.get(position));
+        System.out.println("a: " + recordings.get(position));
     }
 
     @Override
