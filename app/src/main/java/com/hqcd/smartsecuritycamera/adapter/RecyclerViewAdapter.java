@@ -44,7 +44,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Log.d(TAG, "onBindViewHolder: called.");
 
-        Bitmap bitmap = BitmapFactory.decodeFile(mImages.get(i));
         Ion.with(viewHolder.image).load(mImages.get(i));
         viewHolder.name.setText(mImageNames.get(i));
     }
