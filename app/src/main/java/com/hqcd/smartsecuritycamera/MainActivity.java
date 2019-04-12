@@ -3,6 +3,7 @@ package com.hqcd.smartsecuritycamera;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private FirebaseAuth mAuth;
-    private Button settingsBtn, logInBtn, logOutButton, imageButton;
+    private Button settingsBtn, logInBtn, imageButton;
     private TextView welcomeText;
     private FirebaseUser user;
     private ArrayList<String> mNames = new ArrayList<>();
@@ -43,17 +44,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
 
+        //Obtain Current User if Logged In
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
+        //Initialize Default Settings
+        PreferenceManager.setDefaultValues(this,R.xml.preferences ,false );
+
         logInBtn = (Button)findViewById(R.id.toLoginScreen);
-        logOutButton = (Button)findViewById(R.id.logOutButton);
         settingsBtn = (Button) findViewById(R.id.settings_button);
         welcomeText = (TextView)findViewById(R.id.welcomeText);
         recyclerView = (RecyclerView)findViewById(R.id.recentActivityRecyclerView);
         fab = (FloatingActionButton)findViewById(R.id.floatingActionButton);
         imageButton = (Button)findViewById(R.id.button_images);
-
-        settingsBtn.setEnabled(false);
 
         ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.INTERNET, Manifest.permission.RECORD_AUDIO}, 1);
 
@@ -73,14 +75,12 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         user = FirebaseAuth.getInstance().getCurrentUser();
         updateUI(user);
-        settingsBtn.setVisibility(View.INVISIBLE);
     }
 
     public void logOut()
     {
         FirebaseAuth.getInstance().signOut();
         Toast.makeText(getApplicationContext(), "Logged Out Successfully", Toast.LENGTH_SHORT).show();
-        logInBtn.setEnabled(true);
         user = FirebaseAuth.getInstance().getCurrentUser();
         updateUI(user);
     }
@@ -93,11 +93,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.toLoginScreen:
-                intent = new Intent(this, LogInActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.logOutButton:
-                logOut();
+                if(user == null)
+                {
+                    intent = new Intent(this, LogInActivity.class);
+                    startActivity(intent);
+                }
+                else
+                {
+                    logOut();
+                }
                 break;
             case R.id.floatingActionButton:
                 intent = new Intent(this, StreamingActivity.class);
@@ -115,20 +119,14 @@ public class MainActivity extends AppCompatActivity {
         if(user == null)
         {
             welcomeText.setText("Sign In to Continue");
-            logInBtn.setEnabled(true);
-            logInBtn.setVisibility(View.VISIBLE);
-            logOutButton.setEnabled(false);
-            logOutButton.setVisibility(View.INVISIBLE);
+            logInBtn.setText("Log In");
             recyclerView.setVisibility(View.INVISIBLE);
 
         }
         else
         {
             welcomeText.setText("Welcome " + user.getDisplayName());
-            logInBtn.setEnabled(false);
-            logInBtn.setVisibility(View.INVISIBLE);
-            logOutButton.setEnabled(true);
-            logOutButton.setVisibility(View.VISIBLE);
+            logInBtn.setText("Log Out");
             recyclerView.setVisibility(View.VISIBLE);
         }
     }

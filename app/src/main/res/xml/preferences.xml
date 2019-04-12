@@ -1,36 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="Streaming">
+    <EditTextPreference
+        android:key="pref_ip_address"
+        android:title="Server IP Address"
+        android:summary="127.0.0.1"
+        android:defaultValue="127.0.0.1"/>
+    <EditTextPreference
+        android:key="pref_device_name"
+        android:title="Device Name"
+        android:summary="default"
+        android:defaultValue="default"/>
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="switch_preference_1"
-            android:summary="Disable to only record locally"
-            android:title="Enable Streaming" />
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="switch_preference_2"
-            android:summary="Old recordings will be deleted after 30 days"
-            android:title="Delete Old Recordings" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="Recording">
-        <ListPreference
-            android:defaultValue="1"
-            android:dialogTitle="Recording Quality"
-            android:title="Recording Quality"
-            android:summary="Select a quality to record in"
-            android:entries="@array/pref_recording_quality_entries"
-            android:entryValues="@array/pref_recording_quality_values"
-            />
-
-    </PreferenceCategory>
-    <PreferenceCategory android:title="Other">
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="switch_preference_1"
-            android:title="Enable Facial Recognition" />
-    </PreferenceCategory>
 
 </PreferenceScreen>

@@ -29,12 +29,6 @@
             android:onClick="onClick"
             android:text="Log In" />
 
-        <Button
-            android:id="@+id/logOutButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="Log Out" />
 
     </LinearLayout>
 
@@ -44,7 +38,7 @@
         android:layout_height="wrap_content"
         android:onClick="onClick"
         android:text="Settings"
-        android:visibility="invisible" />
+        android:layout_below="@+id/linearLayoutTop"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -53,7 +47,7 @@
         android:id="@+id/recentActivityText"
         android:layout_marginTop="20dp"
         android:textSize="24sp"
-        android:layout_below="@id/linearLayoutTop"/>
+        android:layout_below="@id/settings_button"/>
 
     <view class="android.support.v7.widget.RecyclerView"
         android:layout_width="match_parent"
