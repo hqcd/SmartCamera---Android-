@@ -7,6 +7,11 @@
         android:summary="127.0.0.1"
         android:defaultValue="127.0.0.1"/>
     <EditTextPreference
+        android:key="pref_port"
+        android:title="RTSP Port"
+        android:summary="Port 80"
+        android:defaultValue="80"/>
+    <EditTextPreference
         android:key="pref_device_name"
         android:title="Device Name"
         android:summary="default"
