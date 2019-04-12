@@ -2,7 +2,9 @@ package com.hqcd.smartsecuritycamera;
 
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.hqcd.smartsecuritycamera.adapter.ImageAdapter;
@@ -24,6 +28,9 @@ public class ImageListActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<String> paths = new ArrayList<>();
     TextView loadingTV;
+    SharedPreferences sharedPreferences;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +38,10 @@ public class ImageListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_image_list);
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         loadingTV = (TextView)findViewById(R.id.loading_tv);
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
 
         Ion.with(this).load("https://api.myjson.com/bins/18z1pc")
                 .asJsonObject()
@@ -54,7 +65,11 @@ public class ImageListActivity extends AppCompatActivity {
     public void initRecyclerView()
     {
         loadingTV.setVisibility(View.INVISIBLE);
-        ImageAdapter adapter = new ImageAdapter(paths, getApplicationContext());
+        ImageAdapter adapter = new ImageAdapter(paths, getApplicationContext(),
+                sharedPreferences.getString("pref_ip_address", ""),
+                firebaseUser.getUid(),
+                sharedPreferences.getString("pref_device_name", ""));
+
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
     }
