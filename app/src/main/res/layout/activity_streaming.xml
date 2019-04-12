@@ -19,37 +19,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
         android:onClick="onClick"/>
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/streaming_ip_et"
-        android:hint="Server IP Address"
-        android:layout_alignParentTop="true"
-        android:layout_margin="20dp"
-        android:layout_centerHorizontal="true"/>
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/streaming_port_et"
-        android:hint="Port"
-        android:layout_below="@+id/streaming_ip_et"
-        android:layout_marginBottom="20dp"
-        android:layout_centerHorizontal="true"/>
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/streaming_user_et"
-        android:hint="User ID"
-        android:layout_below="@+id/streaming_port_et"
-        android:layout_marginBottom="20dp"
-        android:layout_centerHorizontal="true"/>
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/streaming_device_et"
-        android:hint="Device ID"
-        android:layout_below="@+id/streaming_user_et"
-        android:layout_centerHorizontal="true"/>
+
 
 
 

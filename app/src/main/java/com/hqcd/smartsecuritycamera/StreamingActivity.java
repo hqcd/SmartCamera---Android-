@@ -1,5 +1,7 @@
 package com.hqcd.smartsecuritycamera;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.pedro.rtplibrary.rtsp.RtspCamera1;
 import com.pedro.rtsp.utils.ConnectCheckerRtsp;
 
@@ -20,21 +24,29 @@ public class StreamingActivity extends AppCompatActivity
     private static final String TAG = "StreamingActivity";
     RtspCamera1 rtspCamera1;
     Button streamButton;
-    EditText ipET, portET, userET, deviceET;
+    SharedPreferences sharedPreferences;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_streaming);
+        //Keep Device from Sleeping
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        //Set preview of camera
         SurfaceView surfaceView = (SurfaceView)findViewById(R.id.streaming_surfaceview);
+        //Start/stop streaming
         streamButton = (Button)findViewById(R.id.streaming_start_button);
-        ipET = (EditText)findViewById(R.id.streaming_ip_et);
-        portET = (EditText)findViewById(R.id.streaming_port_et);
-        userET = (EditText)findViewById(R.id.streaming_user_et);
-        deviceET = (EditText)findViewById(R.id.streaming_device_et);
+        //Initialize rtsp camera and connect to camera preview
         rtspCamera1 = new RtspCamera1(surfaceView, this);
         surfaceView.getHolder().addCallback(this);
+
+        //Obtain preferences and user
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+
 
     }
 
@@ -103,7 +115,9 @@ public class StreamingActivity extends AppCompatActivity
                     if (rtspCamera1.isRecording()
                             || rtspCamera1.prepareAudio() && rtspCamera1.prepareVideo()) {
                         streamButton.setText("Stop Streaming");
-                        String url = "rtsp://" + ipET.getText().toString() + ":" + portET.getText().toString() + "/" + userET.getText().toString() + "/" + deviceET.getText().toString();
+                        String url = "rtsp://" + sharedPreferences.getString("pref_ip_address", "")
+                                + ":" + sharedPreferences.getString("pref_port","" ) + "/" +
+                                user.getUid() + "/" + sharedPreferences.getString("pref_device_name","" );
                         Log.d(TAG, "Streaming to : " + url);
                         rtspCamera1.startStream(url);
                     } else {
