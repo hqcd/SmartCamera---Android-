@@ -110,6 +110,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.item_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 break;
+            case R.id.item_stream:
+                startActivity(new Intent(this, StreamingActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -130,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         invalidateOptionsMenu();
         updateUI(user);
+        mNames.clear();
+        mImageUrls.clear();
     }
 
     public void onClick(View view) {
