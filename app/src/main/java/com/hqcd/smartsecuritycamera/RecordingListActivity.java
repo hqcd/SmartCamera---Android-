@@ -60,7 +60,9 @@ public class RecordingListActivity extends AppCompatActivity {
     public void fetchRecordings()
     {
         list.clear();
-        Ion.with(this).load("https://api.myjson.com/bins/9dl2c")
+        String url = "http://" + sharedPreferences.getString("pref_ip_address", "") + ":5000/videos";
+        Ion.with(this).load(url)
+                .setBodyParameter("user", user)
                 .asJsonObject()
                 .setCallback(new FutureCallback<JsonObject>() {
                     @Override
@@ -103,7 +105,7 @@ public class RecordingListActivity extends AppCompatActivity {
     public void launchVideo(String name)
     {
         int vlcRequestCode = 42;
-        Uri uri = Uri.parse("http://" + ip + "/" + user + "/" + device + "/videos/" + name);
+        Uri uri = Uri.parse("http://" + ip + ":5000/users/" + user + "/videos/" + name);
         Intent vlcIntent = new Intent(Intent.ACTION_VIEW);
         vlcIntent.setPackage("org.videolan.vlc");
         vlcIntent.setDataAndTypeAndNormalize(uri, "video/*");

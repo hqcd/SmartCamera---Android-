@@ -43,7 +43,8 @@ public class ImageListActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-        Ion.with(this).load("https://api.myjson.com/bins/18z1pc")
+        String url = "http://" + sharedPreferences.getString("pref_ip_address", "") + ":5000/images";
+        Ion.with(this).load(url).setBodyParameter("user", firebaseUser.getUid())
                 .asJsonObject()
                 .setCallback(new FutureCallback<JsonObject>() {
                     @Override

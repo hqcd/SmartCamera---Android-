@@ -9,13 +9,18 @@
     <EditTextPreference
         android:key="pref_port"
         android:title="RTSP Port"
-        android:summary="Port 80"
+        android:summary="80"
         android:defaultValue="80"/>
     <EditTextPreference
         android:key="pref_device_name"
         android:title="Device Name"
         android:summary="default"
         android:defaultValue="default"/>
+    <EditTextPreference
+        android:key="pref_http_port"
+        android:title="HTTP Port"
+        android:summary="5000"
+        android:defaultValue="5000"/>
 
 
 </PreferenceScreen>

@@ -43,7 +43,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
 
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        String url = "http://" + ip + "/" + user + "/" + device + "/" + folder + "/" + imagePaths.get(i);
+        String url = "http://" + ip + ":5000/users/" + user +  "/" + folder + "/" + imagePaths.get(i);
         Ion.with(viewHolder.imageView).load(url);
         System.out.println("Url loaded: " + url);
     }
