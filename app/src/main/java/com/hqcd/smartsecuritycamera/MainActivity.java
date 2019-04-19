@@ -226,17 +226,20 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onCompleted(Exception e, JsonObject result) {
                         JsonArray jsonArray = result.getAsJsonArray("files");
-                        for(int i = jsonArray.size() -1 ; i > jsonArray.size() - 4;i--)
+                        if(jsonArray != null)
                         {
-                            //Remove quotes from the image names
-                            String temp = jsonArray.get(i).toString();
-                            temp = temp.replace("\"", "");
+                            for(int i = jsonArray.size() -1 ; i > jsonArray.size() - 4;i--)
+                            {
+                                //Remove quotes from the image names
+                                String temp = jsonArray.get(i).toString();
+                                temp = temp.replace("\"", "");
 
-                            //Add the image paths to the arraylist
-                            mNames.add(temp);
+                                //Add the image paths to the arraylist
+                                mNames.add(temp);
 
+                            }
+                            initRecyclerView();
                         }
-                        initRecyclerView();
                     }
                 });
     }
