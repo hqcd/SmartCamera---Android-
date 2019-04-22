@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
 import com.hqcd.smartsecuritycamera.R;
 import com.koushikdutta.ion.Ion;
 
@@ -24,6 +25,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     private String user;
     private String device;
     private String folder = "images";
+    private SharedPreferences sharedPreferences;
 
     public ImageAdapter(ArrayList<String> imagePaths, Context context, String ip, String user, String device) {
         this.imagePaths = imagePaths;
@@ -31,6 +33,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         this.ip = ip;
         this.user = user;
         this.device = device;
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     @NonNull
@@ -43,7 +46,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
 
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        String url = "http://" + ip + ":5000/users/" + user +  "/" + folder + "/" + imagePaths.get(i);
+        String url = "http://" + ip + ":" + sharedPreferences.getString("pref_http_port", "") + "/users/" + user +  "/" + folder + "/" + imagePaths.get(i);
         Ion.with(viewHolder.imageView).load(url);
         System.out.println("Url loaded: " + url);
     }

@@ -27,32 +27,23 @@
             android:enabled="true"
             android:exported="true"></service>
 
-        <activity android:name=".RecordingListActivity" />
-        <activity android:name=".ImageListActivity" />
         <activity
             android:name=".StreamingActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LogInActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".RecordingListActivity"
+            android:label="Recordings"/>
 
-        <service
-            android:name=".RecorderService"
-            android:enabled="true"
-            android:exported="true" />
-
-        <activity
-            android:name=".CameraRecorder"
-            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

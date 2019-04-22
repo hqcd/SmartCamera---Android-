@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hqcd.smartsecuritycamera.R;
+import com.hqcd.smartsecuritycamera.RecordingsFragment;
 
 import java.util.ArrayList;
 
