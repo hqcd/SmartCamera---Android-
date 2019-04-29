@@ -61,7 +61,8 @@ public class StreamingService extends Service implements ConnectCheckerRtsp {
                 rtspCamera2.startStream(rtspURL);
                 Toast.makeText(this, "Begin Streaming", Toast.LENGTH_SHORT).show();
 
-                Ion.with(this).load("http://" + ip + ":" + httpPort + "/startRecording").setBodyParameter("url", rtspURL);
+                Ion.with(this).load("http://" + ip + ":" + httpPort + "/beginStreamProcessing").setBodyParameter("address", rtspURL)
+                .setBodyParameter("uid", userid);
             }
         }
     }

@@ -35,7 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_listitem, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_grid_item, viewGroup, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -45,7 +45,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Log.d(TAG, "onBindViewHolder: called.");
 
         Ion.with(viewHolder.image).load(mImages.get(i));
-        viewHolder.name.setText(mImageNames.get(i));
+
+        String file = mImageNames.get(i);
+        int separate = file.indexOf("-");
+        String name = file.substring(0, separate);
+        String date = "Seen on: " + file.substring(separate+1, file.length()-4);
+
+        viewHolder.nameView.setText(name);
+        viewHolder.dateView.setText(date);
     }
 
     @Override
@@ -57,12 +64,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
         ImageView image;
-        TextView name;
+        TextView nameView, dateView;
         RelativeLayout parentLayout;
         public ViewHolder(View itemView){
             super(itemView);
             image = itemView.findViewById(R.id.image);
-            name = itemView.findViewById(R.id.text);
+            nameView = itemView.findViewById(R.id.name);
+            dateView = itemView.findViewById(R.id.date);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }
 

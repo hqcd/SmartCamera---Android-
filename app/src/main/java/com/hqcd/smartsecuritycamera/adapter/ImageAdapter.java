@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.hqcd.smartsecuritycamera.R;
 import com.koushikdutta.ion.Ion;
@@ -48,6 +49,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         String url = "http://" + ip + ":" + sharedPreferences.getString("pref_http_port", "") + "/users/" + user +  "/" + folder + "/" + imagePaths.get(i);
         Ion.with(viewHolder.imageView).load(url);
+        String file = imagePaths.get(i);
+        int separate = file.indexOf("-");
+        String name = file.substring(0, separate);
+        String date = "Seen on: " + file.substring(separate+1, file.length()-4);
+
+        viewHolder.nameView.setText(name);
+        viewHolder.dateView.setText(date);
         System.out.println("Url loaded: " + url);
     }
 
@@ -58,10 +66,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
+        TextView nameView, dateView;
         public ViewHolder(View itemView)
         {
             super(itemView);
             imageView = itemView.findViewById(R.id.image);
+            nameView = itemView.findViewById(R.id.name);
+            dateView = itemView.findViewById(R.id.date);
         }
     }
 }
