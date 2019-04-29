@@ -217,6 +217,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                ft.commit();
                 startActivity(new Intent(this, RecordingListActivity.class));
                 break;
+            case R.id.nav_upload:
+                UploadFragment uploadFragment = new UploadFragment();
+                uploadFragment.setArguments(bundle);
+                ft.replace(R.id.fragment_container, uploadFragment);
+                ft.commit();
+                break;
 
         }
 
